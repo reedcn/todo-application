@@ -21,6 +21,7 @@ public class ToDoServiceImpl implements ToDoService {
 
 	public void addToDo(AddItemRequest itemRequest) {
 		toDoRepository.save(new ToDoItem(itemRequest.getTitle(), itemRequest.getDescription(), itemRequest.getDate(), itemRequest.isDone()));
+		logger.info("Added a new item: "+ itemRequest.getTitle());
 	}
 
 	public List<ToDoItem> listToDoItems() {
@@ -31,4 +32,9 @@ public class ToDoServiceImpl implements ToDoService {
         }
 		return toDoList;
     }
+
+	public ToDoItem getItemById(Long id) {
+		return toDoRepository.getReferenceById(id);
+	}
+
 }

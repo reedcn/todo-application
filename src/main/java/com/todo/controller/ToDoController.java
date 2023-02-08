@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,8 +28,13 @@ public class ToDoController {
         return new ResponseEntity<String>("done", HttpStatus.OK);
     }
 
-    @GetMapping("/viewItems")
+    @GetMapping("/items")
     public ResponseEntity<String> viewItems() {
         return new ResponseEntity<String>(toDoService.listToDoItems().toString(), HttpStatus.OK);
+    }
+
+    @GetMapping("/items/{itemId}")
+    public String getItemById(@PathVariable(value="itemId") Long id) {
+        return toDoService.getItemById(id).toString();
     }
 }

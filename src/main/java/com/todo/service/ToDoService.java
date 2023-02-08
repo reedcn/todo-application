@@ -9,4 +9,6 @@ public interface ToDoService {
 	public void addToDo(AddItemRequest itemRequest);	
 
 	public List<ToDoItem> listToDoItems();
+	
+	public ToDoItem getItemById(Long id);
 }
